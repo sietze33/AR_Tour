@@ -73,7 +73,7 @@
           rotation="-90 0 0">
         </a-entity>
 
-        <!-- Tekst boven model (alleen DE/EN gebruiken dit) -->
+        <!-- Tekst boven model (alleen EN gebruikt dit) -->
         <a-text 
           id="greetingText"
           value="" 
@@ -90,17 +90,18 @@
       <a-entity camera></a-entity>
     </a-scene>
 
-    <!-- Alleen NL heeft audio -->
+    <!-- Audio bestanden -->
     <audio id="audioNL" src="NL.mp3"></audio>
+    <audio id="audioDE" src="DE.mp3"></audio>
 
     <script>
       const startscreen = document.getElementById('startscreen');
       const buttons = document.querySelectorAll('.langBtn');
       const greetingText = document.getElementById('greetingText');
       const audioNL = document.getElementById("audioNL");
+      const audioDE = document.getElementById("audioDE");
 
       const greetings = {
-        DE: "Hoi, ich bin eine Fischerfrau",
         EN: "Hi, I am a fisherwoman"
       };
 
@@ -111,12 +112,19 @@
           // Startscreen verbergen
           startscreen.style.display = 'none';
 
+          // Stop altijd eerst andere audio
+          audioNL.pause();
+          audioNL.currentTime = 0;
+          audioDE.pause();
+          audioDE.currentTime = 0;
+
           if (lang === "NL") {
-            // Speel MP3 af
             audioNL.play();
             greetingText.setAttribute('visible', 'false');
-          } else {
-            // Zet tekst
+          } else if (lang === "DE") {
+            audioDE.play();
+            greetingText.setAttribute('visible', 'false');
+          } else if (lang === "EN") {
             greetingText.setAttribute('value', greetings[lang]);
             greetingText.setAttribute('visible', 'true');
           }
