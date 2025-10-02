@@ -5,59 +5,87 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <style>
-      /* Startscreen achtergrond */
+      /* Startscreen achtergrond (gradient ipv afbeelding) */
       #startscreen {
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: url("achtergrond.png") no-repeat center center;
-        background-size: cover;
+        background: linear-gradient(135deg, #004aad, #0088cc);
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
         padding: 20px;
         z-index: 10;
       }
 
-      /* Container met knoppen linksboven */
+      /* Logo rechtsboven */
+      #logo {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 80px;
+        height: auto;
+        z-index: 20;
+      }
+
+      /* Container met knoppen */
       .langButtons {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+        width: 80%;
+        max-width: 300px;
       }
 
       /* Algemene knopstijl */
       .langBtn {
-        padding: 10px 20px;
-        font-size: 1em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 12px 18px;
+        font-size: 1.2em;
         font-weight: bold;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
+        background: rgba(0,0,0,0.6);
         color: white;
         cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
       }
 
-      /* Vlagkleuren */
-      .langBtn[data-lang="NL"] {
-        background: url("Schermafbeelding 2025-09-24 100257.png");
-        color: black;
+      .langBtn:hover {
+        transform: scale(1.05);
+        background: rgba(255,255,255,0.2);
       }
-      .langBtn[data-lang="DE"] {
-        background: url("Schermafbeelding 2025-09-24 100315.png");
-      }
-      .langBtn[data-lang="EN"] {
-        background: url("Schermafbeelding 2025-09-24 100332.png");
+
+      /* Vlag iconen */
+      .langBtn img.flag {
+        width: 30px;
+        height: 20px;
+        object-fit: cover;
+        border-radius: 3px;
       }
     </style>
   </head>
   <body style="margin:0; overflow:hidden;">
 
+    <!-- Logo -->
+    <img src="logo.png" id="logo" alt="Logo">
+
     <!-- Startscreen overlay -->
     <div id="startscreen">
       <div class="langButtons">
-        <button class="langBtn" data-lang="NL">Nederlands</button>
-        <button class="langBtn" data-lang="DE">Deutsch</button>
-        <button class="langBtn" data-lang="EN">English</button>
+        <button class="langBtn" data-lang="NL">
+          <img src="Schermafbeelding 2025-09-24 100257.png" class="flag" alt="NL"> Nederlands
+        </button>
+        <button class="langBtn" data-lang="DE">
+          <img src="Schermafbeelding 2025-09-24 100315.png" class="flag" alt="DE"> Deutsch
+        </button>
+        <button class="langBtn" data-lang="EN">
+          <img src="Schermafbeelding 2025-09-24 100332.png" class="flag" alt="EN"> English
+        </button>
       </div>
     </div>
 
@@ -136,7 +164,3 @@
 
   </body>
 </html>
-
-
-
-
