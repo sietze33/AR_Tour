@@ -44,12 +44,14 @@
       background: white;
       border: none;
       border-radius: 20px;
-      padding: 15px 25px;
+      padding: 0;
       font-size: 1.2em;
       font-weight: bold;
       color: #0b1a33;
       cursor: pointer;
-      width: 250px;
+      width: 280px;
+      height: 70px;
+      overflow: hidden;
       box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -60,9 +62,9 @@
     }
 
     .langBtn img {
-      width: 35px;
-      height: auto;
-      border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -70,24 +72,25 @@
 
   <!-- Startscreen overlay -->
   <div id="startscreen">
-    <img id="logo" src="jouw_logo.png" alt="Logo">
+    <!-- gebruik jouw screenshot-logo hier -->
+    <img id="logo" src="logo.png" alt="Logo">
 
     <button class="langBtn" data-lang="NL">
-      <img src="nl.png" alt="NL vlag"> Nederlands
+      <img src="Schermafbeelding 2025-09-24 100257.png" alt="Nederlands">
     </button>
 
     <button class="langBtn" data-lang="EN">
-      <img src="en.png" alt="UK vlag"> English
+      <img src="Schermafbeelding 2025-09-24 100332.png" alt="English">
     </button>
 
     <button class="langBtn" data-lang="DE">
-      <img src="de.png" alt="DE vlag"> Deutsch
+      <img src="Schermafbeelding 2025-09-24 100315.png" alt="Deutsch">
     </button>
   </div>
 
   <!-- AR Scene -->
   <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true; markersAreaEnabled: false;">
-    <a-marker type="pattern" url="BLAUW.patt">
+    <a-marker type="pattern" url="TIM.patt">
 
       <!-- 3D model -->
       <a-entity 
