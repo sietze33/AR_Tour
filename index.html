@@ -1,166 +1,162 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>AR.js meertalig startscherm</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <style>
-      /* Startscreen achtergrond (gradient ipv afbeelding) */
-      #startscreen {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: linear-gradient(135deg, #004aad, #0088cc);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        z-index: 10;
-      }
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>AR.js Meertalig Startscherm</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
 
-      /* Logo rechtsboven */
-      #logo {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 80px;
-        height: auto;
-        z-index: 20;
-      }
+    /* Startscreen achtergrond */
+    #startscreen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #0077c8 0%, #4da9f0 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 10;
+    }
 
-      /* Container met knoppen */
-      .langButtons {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 80%;
-        max-width: 300px;
-      }
+    /* Logo rechtsboven */
+    #logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 60px;
+      height: auto;
+    }
 
-      /* Algemene knopstijl */
-      .langBtn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        justify-content: flex-start;
-        width: 100%;
-        padding: 12px 18px;
-        font-size: 1.2em;
-        font-weight: bold;
-        border: none;
-        border-radius: 10px;
-        background: rgba(0,0,0,0.6);
-        color: white;
-        cursor: pointer;
-        transition: transform 0.2s, background 0.2s;
-      }
+    /* Knoppenstijl */
+    .langBtn {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: white;
+      border: none;
+      border-radius: 20px;
+      padding: 15px 25px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #0b1a33;
+      cursor: pointer;
+      width: 250px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-      .langBtn:hover {
-        transform: scale(1.05);
-        background: rgba(255,255,255,0.2);
-      }
+    .langBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
+    }
 
-      /* Vlag iconen */
-      .langBtn img.flag {
-        width: 30px;
-        height: 20px;
-        object-fit: cover;
-        border-radius: 3px;
-      }
-    </style>
-  </head>
-  <body style="margin:0; overflow:hidden;">
+    .langBtn img {
+      width: 35px;
+      height: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
 
-    <!-- Logo -->
-    <img src="logo.png" id="logo" alt="Logo">
+  <!-- Startscreen overlay -->
+  <div id="startscreen">
+    <img id="logo" src="jouw_logo.png" alt="Logo">
 
-    <!-- Startscreen overlay -->
-    <div id="startscreen">
-      <div class="langButtons">
-        <button class="langBtn" data-lang="NL">
-          <img src="Schermafbeelding 2025-09-24 100257.png" class="flag" alt="NL"> Nederlands
-        </button>
-        <button class="langBtn" data-lang="DE">
-          <img src="Schermafbeelding 2025-09-24 100315.png" class="flag" alt="DE"> Deutsch
-        </button>
-        <button class="langBtn" data-lang="EN">
-          <img src="Schermafbeelding 2025-09-24 100332.png" class="flag" alt="EN"> English
-        </button>
-      </div>
-    </div>
+    <button class="langBtn" data-lang="NL">
+      <img src="nl.png" alt="NL vlag"> Nederlands
+    </button>
 
-    <!-- AR Scene -->
-    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true; markersAreaEnabled: false;">
-      <a-marker type="pattern" url="BLAUW.patt">
-        
-        <!-- 3D model -->
-        <a-entity 
-          gltf-model="url(poppetje.glb)" 
-          scale="6 6 6" 
-          position="0 0 0" 
-          rotation="-90 0 0">
-        </a-entity>
+    <button class="langBtn" data-lang="EN">
+      <img src="en.png" alt="UK vlag"> English
+    </button>
 
-        <!-- Tekst boven model (alleen EN gebruikt dit) -->
-        <a-text 
-          id="greetingText"
-          value="" 
-          position="10 0 0"
-          rotation="-90 0 0"
-          align="center" 
-          color="white"
-          visible="false"
-          scale="5 5 5">
-        </a-text>
+    <button class="langBtn" data-lang="DE">
+      <img src="de.png" alt="DE vlag"> Deutsch
+    </button>
+  </div>
 
-      </a-marker>
+  <!-- AR Scene -->
+  <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true; markersAreaEnabled: false;">
+    <a-marker type="pattern" url="BLAUW.patt">
 
-      <a-entity camera></a-entity>
-    </a-scene>
+      <!-- 3D model -->
+      <a-entity 
+        gltf-model="url(poppetje.glb)" 
+        scale="6 6 6" 
+        position="0 0 0" 
+        rotation="-90 0 0">
+      </a-entity>
 
-    <!-- Audio bestanden -->
-    <audio id="audioNL" src="NL.mp3"></audio>
-    <audio id="audioDE" src="DE.mp3"></audio>
+      <!-- Tekst boven model (alleen EN gebruikt dit) -->
+      <a-text 
+        id="greetingText"
+        value="" 
+        position="10 0 0"
+        rotation="-90 0 0"
+        align="center" 
+        color="white"
+        visible="false"
+        scale="5 5 5">
+      </a-text>
 
-    <script>
-      const startscreen = document.getElementById('startscreen');
-      const buttons = document.querySelectorAll('.langBtn');
-      const greetingText = document.getElementById('greetingText');
-      const audioNL = document.getElementById("audioNL");
-      const audioDE = document.getElementById("audioDE");
+    </a-marker>
 
-      const greetings = {
-        EN: "Hi, I am a fisherwoman"
-      };
+    <a-entity camera></a-entity>
+  </a-scene>
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const lang = btn.getAttribute('data-lang');
+  <!-- Audio bestanden -->
+  <audio id="audioNL" src="NL.mp3"></audio>
+  <audio id="audioDE" src="DE.mp3"></audio>
 
-          // Startscreen verbergen
-          startscreen.style.display = 'none';
+  <script>
+    const startscreen = document.getElementById('startscreen');
+    const buttons = document.querySelectorAll('.langBtn');
+    const greetingText = document.getElementById('greetingText');
+    const audioNL = document.getElementById("audioNL");
+    const audioDE = document.getElementById("audioDE");
 
-          // Stop altijd eerst andere audio
-          audioNL.pause();
-          audioNL.currentTime = 0;
-          audioDE.pause();
-          audioDE.currentTime = 0;
+    const greetings = {
+      EN: "Hi, I am a fisherwoman"
+    };
 
-          if (lang === "NL") {
-            audioNL.play();
-            greetingText.setAttribute('visible', 'false');
-          } else if (lang === "DE") {
-            audioDE.play();
-            greetingText.setAttribute('visible', 'false');
-          } else if (lang === "EN") {
-            greetingText.setAttribute('value', greetings[lang]);
-            greetingText.setAttribute('visible', 'true');
-          }
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
 
-          console.log("Taal gekozen:", lang);
-        });
+        // Startscreen verbergen
+        startscreen.style.display = 'none';
+
+        // Stop altijd eerst andere audio
+        audioNL.pause();
+        audioNL.currentTime = 0;
+        audioDE.pause();
+        audioDE.currentTime = 0;
+
+        if (lang === "NL") {
+          audioNL.play();
+          greetingText.setAttribute('visible', 'false');
+        } else if (lang === "DE") {
+          audioDE.play();
+          greetingText.setAttribute('visible', 'false');
+        } else if (lang === "EN") {
+          greetingText.setAttribute('value', greetings[lang]);
+          greetingText.setAttribute('visible', 'true');
+        }
+
+        console.log("Taal gekozen:", lang);
       });
-    </script>
+    });
+  </script>
 
-  </body>
+</body>
 </html>
