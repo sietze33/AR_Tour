@@ -63,8 +63,8 @@
 
     /* Afbeelding in button schaalbaar */
     .langBtn img {
-      width: 150px;  /* pas hier de schaal aan */
-      height: 150px; /* pas hier de schaal aan */
+      width: 150px;  
+      height: 150px; 
       object-fit: contain;
     }
   </style>
@@ -73,10 +73,8 @@
 
   <!-- Startscreen overlay -->
   <div id="startscreen">
-    <!-- Logo -->
     <img id="logo" src="MuseumLogo.jpg" alt="Logo">
 
-    <!-- Taalknoppen -->
     <button class="langBtn" data-lang="NL">
       <img src="Schermafbeelding 2025-09-24 100257.png" alt="Nederlands">
       Nederlands
@@ -102,8 +100,7 @@
         gltf-model="url(poppetje.glb)" 
         scale="6 6 6" 
         position="0 -1 0" 
-        rotation="-90 0 0"
-        arjs-anchor="smooth: true; smoothCount: 10; smoothTolerance: 0.01; smoothThreshold: 5">
+        rotation="-90 0 0">
       </a-entity>
       <a-text 
         id="greetingText"
@@ -123,8 +120,7 @@
         gltf-model="url(jongetje.glb)" 
         scale="4 4 4" 
         position="0 0 0" 
-        rotation="-90 0 0"
-        arjs-anchor="smooth: true; smoothCount: 10; smoothTolerance: 0.01; smoothThreshold: 5">
+        rotation="-90 0 0">
       </a-entity>
     </a-marker>
 
@@ -175,17 +171,13 @@
         greetingText.setAttribute('visible', 'false');
       }
     });
-    // markerLost event is verwijderd zodat audio blijft spelen
 
     // Audio logica bij marker BLAUW
     const markerBLAUW = document.getElementById('markerBLAUW');
     markerBLAUW.addEventListener("markerFound", () => {
       if (audioBLAUW.paused) audioBLAUW.play();
     });
-    // markerLost event is verwijderd zodat audio blijft spelen
   </script>
 
 </body>
 </html>
-
-
