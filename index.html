@@ -89,18 +89,16 @@
   </div>
 
   <!-- AR Scene -->
-  <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true; markersAreaEnabled: false;">
-    <a-marker type="pattern" url="TIM.patt">
+  <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true;">
 
-      <!-- 3D model -->
+    <!-- Marker TIM -->
+    <a-marker id="markerTIM" type="pattern" url="TIM.patt">
       <a-entity 
         gltf-model="url(poppetje.glb)" 
         scale="6 6 6" 
         position="0 0 0" 
         rotation="-90 0 0">
       </a-entity>
-
-      <!-- Tekst boven model (alleen EN gebruikt dit) -->
       <a-text 
         id="greetingText"
         value="" 
@@ -111,7 +109,16 @@
         visible="false"
         scale="5 5 5">
       </a-text>
+    </a-marker>
 
+    <!-- Marker BLAUW -->
+    <a-marker id="markerBLAUW" type="pattern" url="BLAUW.patt">
+      <a-entity 
+        gltf-model="url(jongetje.glb)" 
+        scale="6 6 6" 
+        position="0 0 0" 
+        rotation="-90 0 0">
+      </a-entity>
     </a-marker>
 
     <a-entity camera></a-entity>
@@ -120,6 +127,8 @@
   <!-- Audio bestanden -->
   <audio id="audioNL" src="NL.mp3"></audio>
   <audio id="audioDE" src="DE.mp3"></audio>
+  <audio id="audioEN" src="EN.mp3"></audio>
+  <audio id="audioBLAUW" src="BLAUW.mp3"></audio>
 
   <script>
     const startscreen = document.getElementById('startscreen');
@@ -127,39 +136,58 @@
     const greetingText = document.getElementById('greetingText');
     const audioNL = document.getElementById("audioNL");
     const audioDE = document.getElementById("audioDE");
+    const audioEN = document.getElementById("audioEN");
+    const audioBLAUW = document.getElementById("audioBLAUW");
+
+    let selectedLang = null;
 
     const greetings = {
       EN: "Hi, I am a fisherwoman"
     };
 
+    // Taal kiezen
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-lang');
-
-        // Startscreen verbergen
+        selectedLang = btn.getAttribute('data-lang');
         startscreen.style.display = 'none';
-
-        // Stop altijd eerst andere audio
-        audioNL.pause();
-        audioNL.currentTime = 0;
-        audioDE.pause();
-        audioDE.currentTime = 0;
-
-        if (lang === "NL") {
-          audioNL.play();
-          greetingText.setAttribute('visible', 'false');
-        } else if (lang === "DE") {
-          audioDE.play();
-          greetingText.setAttribute('visible', 'false');
-        } else if (lang === "EN") {
-          greetingText.setAttribute('value', greetings[lang]);
-          greetingText.setAttribute('visible', 'true');
-        }
-
-        console.log("Taal gekozen:", lang);
+        console.log("Taal gekozen:", selectedLang);
       });
     });
+
+    // Audio logica bij marker TIM
+    const markerTIM = document.getElementById('markerTIM');
+    markerTIM.addEventListener("markerFound", () => {
+      stopAllAudio();
+      if (selectedLang === "NL") {
+        audioNL.play();
+        greetingText.setAttribute('visible', 'false');
+      } else if (selectedLang === "DE") {
+        audioDE.play();
+        greetingText.setAttribute('visible', 'false');
+      } else if (selectedLang === "EN") {
+        audioEN.play();
+        greetingText.setAttribute('value', greetings.EN);
+        greetingText.setAttribute('visible', 'true');
+      }
+    });
+    markerTIM.addEventListener("markerLost", stopAllAudio);
+
+    // Audio logica bij marker BLAUW
+    const markerBLAUW = document.getElementById('markerBLAUW');
+    markerBLAUW.addEventListener("markerFound", () => {
+      stopAllAudio();
+      audioBLAUW.play();
+    });
+    markerBLAUW.addEventListener("markerLost", stopAllAudio);
+
+    function stopAllAudio() {
+      [audioNL, audioDE, audioEN, audioBLAUW].forEach(a => {
+        a.pause();
+        a.currentTime = 0;
+      });
+    }
   </script>
 
 </body>
 </html>
+
