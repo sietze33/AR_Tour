@@ -67,25 +67,29 @@
   <!-- Marker VISSERVROUW -->
   <a-marker id="markerVISSERVROUW" type="pattern" url="Testmarker1.patt">
     <a-entity gltf-model="url(poppetje.glb)" scale="2 2 2" rotation="-90 0 0"></a-entity>
+    <a-plane id="bgVISSERVROUW" position="1 0 -0.01" rotation="-90 0 0" width="6" height="2" color="black" opacity="0.6" visible="false"></a-plane>
     <a-text id="textVISSERVROUW" value="" position="1 0 0" rotation="-90 0 0" color="white" visible="false" scale="1 1 1" wrap-count="70"></a-text>
   </a-marker>
 
   <!-- Marker POPPETJE -->
   <a-marker id="markerPOPPETJE" type="pattern" url="Testmarker2.patt">
     <a-entity gltf-model="url(jongentje.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
-    <a-text id="textPOPPETJE" value="" position="5 0 0" rotation="-90 0 0" color="White" visible="false" scale="2 2 2"></a-text>
+    <a-plane id="bgPOPPETJE" position="5 0 -0.01" rotation="-90 0 0" width="4" height="1.2" color="black" opacity="0.6" visible="false"></a-plane>
+    <a-text id="textPOPPETJE" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2"></a-text>
   </a-marker>
 
   <!-- Marker POLITIE -->
   <a-marker id="markerPOLITIE" type="pattern" url="Testmarker3.patt">
     <a-entity gltf-model="url(Politie.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
-    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" color="White" visible="false" scale="2 2 2"></a-text>
+    <a-plane id="bgPOLITIE" position="5 0 -0.01" rotation="-90 0 0" width="4" height="1.2" color="black" opacity="0.6" visible="false"></a-plane>
+    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2"></a-text>
   </a-marker>
 
   <!-- Marker SCHAATSER -->
   <a-marker id="markerSCHAATSER" type="pattern" url="Testmarker4.patt">
     <a-entity gltf-model="url(Schaatser.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
-    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" color="White" visible="false" scale="2 2 2"></a-text>
+    <a-plane id="bgSCHAATSER" position="5 0 -0.01" rotation="-90 0 0" width="4" height="1.2" color="black" opacity="0.6" visible="false"></a-plane>
+    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2"></a-text>
   </a-marker>
 
   <a-entity camera></a-entity>
@@ -113,7 +117,7 @@ document.querySelectorAll('.langBtn').forEach(btn => {
 
 const greetings = {
   VISSERVROUW: {
-    NL: "De visservrouw met de lange broek uit Moddergat is een fascinerende figuur uit de Friese visserijcultuur. In traditionele vissersgemeenschappen droegen vrouwen vaak lange rokken, maar deze vrouw viel op omdat ze een broek droeg — iets wat destijds ongebruikelijk was. Dit kledingstuk stond symbool voor haar praktische instelling en sterke karakter. De vrouwen in Moddergat, dat aan de Waddenzee ligt, verrichtten zwaar werk zoals het herstellen van netten en dragen van goederen. De visservrouw met de lange broek symboliseert de kracht en het doorzettingsvermogen van de vrouwen die het dorp en hun gezinnen draaiende hielden.",
+    NL: "De visservrouw met de lange broek uit Moddergat is een fascinerend figuur uit de Friese visserijcultuur. In traditionele vissersgemeenschappen droegen vrouwen vaak lange rokken, maar deze vrouw viel op omdat ze een broek droeg — iets wat destijds ongebruikelijk was. Dit kledingstuk stond symbool voor haar praktische instelling en sterke karakter. De vrouwen in Moddergat, dat aan de Waddenzee ligt, verrichtten zwaar werk zoals het herstellen van netten en dragen van goederen. De visservrouw met de lange broek symboliseert de kracht en het doorzettingsvermogen van de vrouwen die het dorp en hun gezinnen draaiende hielden.",
     EN: "The fisherwoman with the long trousers in Moddergat is a fascinating figure from Frisian fishing culture. In traditional fishing communities, women often wore long skirts, but this woman stood out because she wore trousers — something unusual for women at the time. This choice reflected her practicality and strong character. The women of Moddergat, a village by the Wadden Sea, did heavy work like repairing nets and carrying goods. The fisherwoman with the long trousers symbolizes the strength and perseverance of the women who kept their village and families running despite hardship.",
     DE: "Die Fischerin mit der langen Hose in Moddergat ist eine faszinierende Figur aus der friesischen Fischereikultur. In traditionellen Fischerdörfern trugen Frauen meist lange Röcke, aber diese Frau fiel auf, weil sie Hosen trug – etwas, das für Frauen damals ungewöhnlich war. Diese Kleidung stand für ihre praktische Haltung und ihren starken Charakter. Die Frauen von Moddergat, einem Dorf an der Nordsee, verrichteten schwere Arbeit wie das Reparieren von Netzen und das Tragen von Lasten. Die Fischerin mit der langen Hose symbolisiert die Stärke und Ausdauer der Frauen, die ihr Dorf und ihre Familien trotz der harten Bedingungen am Leben hielten."
   },
@@ -122,8 +126,16 @@ const greetings = {
     EN:"Hi, I am a little figure",
     DE:"Hallo, ich bin eine kleine Figur"
   },
-  POLITIE: { NL:"Hoi, ik ben een politieagent", EN:"Hi, I am a police officer", DE:"Hallo, ich bin ein Polizist" },
-  SCHAATSER: { NL:"Hoi, ik ben een schaatser", EN:"Hi, I am a skater", DE:"Hallo, ich bin ein Schlittschuhläufer" }
+  POLITIE: {
+    NL:"Hoi, ik ben een politieagent",
+    EN:"Hi, I am a police officer",
+    DE:"Hallo, ich bin ein Polizist"
+  },
+  SCHAATSER: {
+    NL:"Hoi, ik ben een schaatser",
+    EN:"Hi, I am a skater",
+    DE:"Hallo, ich bin ein Schlittschuhläufer"
+  }
 };
 
 const markers = [
@@ -136,17 +148,19 @@ const markers = [
 markers.forEach(m => {
   const marker = document.getElementById(m.id);
   const text = document.getElementById(m.textId);
+  const bg = document.getElementById("bg" + m.id.replace("marker",""));
+  
   marker.addEventListener('markerFound', () => {
     text.setAttribute('value', greetings[m.id.replace("marker","")][selectedLang]);
     text.setAttribute('visible', true);
+    if (bg) bg.setAttribute('visible', true);
     if (m.audio) document.getElementById("audio"+selectedLang).play();
   });
-  marker.addEventListener('markerLost', () => text.setAttribute('visible', false));
+  marker.addEventListener('markerLost', () => {
+    text.setAttribute('visible', false);
+    if (bg) bg.setAttribute('visible', false);
+  });
 });
 </script>
 </body>
 </html>
-
-
-
-
