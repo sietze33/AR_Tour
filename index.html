@@ -59,7 +59,12 @@
 
   <!-- Marker Jongetje-->
   <a-marker id="markerJongetje" type="pattern" url="Testmarker2.patt">
-    <a-entity gltf-model="url(jongetje.glb)" scale="2 2 2" position="0 0 0" rotation="-90 0 0"></a-entity>
+    <a-entity gltf-model="url(jongetje.glb)"
+      scale="2 2 2"
+      position="0 0 0"
+      rotation="-90 0 0">
+      </a-entity>
+    
     <a-text id="textJongetje"
       value=""
       position="3 0  0"
@@ -97,21 +102,21 @@
   let selectedLang = "NL";
 
   const greetings = {
-    Visservrouw: { NL:"Hallo ik ben een friese visservrouw wij waren de eerste vrouwen met lange broeken. Wij haden de taak om wormen te gaan zoeken op het wad en deze daarna te gaan knopen aan een groot touw met haken.",
-          EN:"Hi, I'm a Frisian fisherwoman. We were the first women to wear long trousers. Our job was to search for fish on the mudflats and then tie them to a large rope with hooks.",
-          DE:"Hallo, ich bin eine friesische Fischerin. Wir waren die ersten Frauen, die lange Hosen trugen. Unsere Aufgabe war es, im Watt nach Fischen zu suchen und sie dann mit Haken an ein großes Seil zu binden." },
+    Visservrouw: {NL:"Hallo ik ben een friese visservrouw wij waren de eerste vrouwen met lange broeken. Wij haden de taak om wormen te gaan zoeken op het wad en deze daarna te gaan knopen aan een groot touw met haken.",
+                  EN:"Hi, I'm a Frisian fisherwoman. We were the first women to wear long trousers. Our job was to search for fish on the mudflats and then tie them to a large rope with hooks.",
+                  DE:"Hallo, ich bin eine friesische Fischerin. Wir waren die ersten Frauen, die lange Hosen trugen. Unsere Aufgabe war es, im Watt nach Fischen zu suchen und sie dann mit Haken an ein großes Seil zu binden." },
     
-    Jongetje: { NL:"Hoi, welkom in mijn woonkamer hier eten wij altijd, Bij ons thuis is het zo dat de inwoners die een inkomen hebben een stoel verdienen aan de tafel. Ik en mijn zusje moeten dan tijdens het eten op de grond gaan zitten.",
-               EN:"Hi, welcome to my living room! This is where we always eat. In our house, residents who have an income earn a seat at the table. My sister and I have to sit on the floor while we eat.",
-               DE:"Hallo, willkommen in meinem Wohnzimmer! Hier essen wir immer. Bei uns bekommen die Bewohner, die ein Einkommen haben, einen Platz am Tisch. Meine Schwester und ich müssen beim Essen auf dem Boden sitzen." },
+    Jongetje: {  NL:"Hoi, welkom in mijn woonkamer hier eten wij altijd, Bij ons thuis is het zo dat de inwoners die een inkomen hebben een stoel verdienen aan de tafel. Ik en mijn zusje moeten dan tijdens het eten op de grond gaan zitten.",
+                 EN:"Hi, welcome to my living room! This is where we always eat. In our house, residents who have an income earn a seat at the table. My sister and I have to sit on the floor while we eat.",
+                 DE:"Hallo, willkommen in meinem Wohnzimmer! Hier essen wir immer. Bei uns bekommen die Bewohner, die ein Einkommen haben, einen Platz am Tisch. Meine Schwester und ich müssen beim Essen auf dem Boden sitzen." },
     
-    POLITIE: { NL:"Hoi, ik ben een politieagent",
-              EN:"Hi, I am a police officer",
-              DE:"Hallo, ich bin ein Polizist" },
+    POLITIE: {   NL:"Hoi, ik ben een politieagent",
+                 EN:"Hi, I am a police officer",
+                 DE:"Hallo, ich bin ein Polizist" },
     
     SCHAATSER: { NL:"Hoi, ik ben een schaatser",
-                EN:"Hi, I am a skater",
-                DE:"Hallo, ich bin ein Schlittschuhläufer" }
+                 EN:"Hi, I am a skater",
+                 DE:"Hallo, ich bin ein Schlittschuhläufer" }
   };
 
   // Startscreen taal selectie
@@ -153,6 +158,7 @@
 
 </body>
 </html>
+
 
 
 
