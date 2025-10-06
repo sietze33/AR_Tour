@@ -7,21 +7,44 @@
   <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <style>
     body { margin: 0; height: 100vh; overflow: hidden; font-family: Arial, sans-serif; }
+    #audioNL, #audioDE, #audioEN { width: 300px; display: none; }
+    #mutebutton {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #mutebutton:hover { background-color: #0056b3; }
     #startscreen {
       position:absolute; top:0; left:0; width:100%; height:100%; background:#0b1a33;
       display:flex; justify-content:center; align-items:center; flex-direction:column; gap:25px; z-index:10; overflow:hidden;
     }
-    .shape { position:absolute; border-radius:50%; opacity:0.3; animation: float 20s infinite ease-in-out; background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);}
+    .shape { position:absolute; border-radius:50%; opacity:0.3; animation: float 20s infinite ease-in-out;
+      background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);}
     .shape1 { width:200px; height:200px; top:10%; left:5%; animation-duration:25s; }
     .shape2 { width:300px; height:300px; top:50%; left:70%; animation-duration:35s; }
     .shape3 { width:150px; height:150px; top:80%; left:20%; animation-duration:30s; }
-    @keyframes float { 0% {transform:translateY(0) translateX(0) rotate(0deg);} 50% {transform:translateY(-50px) translateX(30px) rotate(45deg);} 100% {transform:translateY(0) translateX(0) rotate(0deg);} }
+    @keyframes float {
+      0% {transform:translateY(0) translateX(0) rotate(0deg);}
+      50% {transform:translateY(-50px) translateX(30px) rotate(45deg);}
+      100% {transform:translateY(0) translateX(0) rotate(0deg);}
+    }
     #logo { position:absolute; top:20px; right:20px; width:100px; z-index:11; }
-    .langBtn { display:flex; align-items:center; justify-content:center; gap:15px; background: linear-gradient(135deg, #4facfe, #00f2fe); border:none; border-radius:30px; padding:0 25px; font-size:1.2em; font-weight:600; color:white; cursor:pointer; width:320px; height:80px; box-shadow:0 8px 25px rgba(0,0,0,0.25); transition: all 0.3s ease; position: relative; z-index:11; }
+    .langBtn {
+      display:flex; align-items:center; justify-content:center; gap:15px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      border:none; border-radius:30px; padding:0 25px;
+      font-size:1.2em; font-weight:600; color:white; cursor:pointer;
+      width:320px; height:80px; box-shadow:0 8px 25px rgba(0,0,0,0.25);
+      transition: all 0.3s ease; position: relative; z-index:11;
+    }
     .langBtn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
     .langBtn img { width:60px; height:60px; border-radius:50%; transition: transform 0.3s ease; }
     .langBtn:hover img { transform: scale(1.1) rotate(5deg); }
-    .langBtn span { flex:1; text-align:left; color:white; }
   </style>
 </head>
 <body>
@@ -33,144 +56,93 @@
 
   <img id="logo" src="MuseumLogo.jpg" alt="Logo">
 
-  <button class="langBtn" data-lang="NL"><img src="Schermafbeelding 2025-09-24 100257.png"><span>Nederlands</span></button>
-  <button class="langBtn" data-lang="EN"><img src="Schermafbeelding 2025-09-24 100332.png"><span>English</span></button>
-  <button class="langBtn" data-lang="DE"><img src="Schermafbeelding 2025-09-24 100315.png"><span>Deutsch</span></button>
+  <button class="langBtn" data-lang="NL"><img src="SchermafbeeldingNL.png"><span>Nederlands</span></button>
+  <button class="langBtn" data-lang="EN"><img src="SchermafbeeldingEN.png"><span>English</span></button>
+  <button class="langBtn" data-lang="DE"><img src="SchermafbeeldingDE.png"><span>Deutsch</span></button>
+  <button onclick="mute_audio()" type="button" id="mutebutton">Mute</button>
 </div>
 
 <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true;">
 
-  <!-- Marker Visservrouw -->
-  <a-marker id="markerVisservrouw" type="pattern" url="Testmarker1.patt">
-    <a-entity gltf-model="url(poppetje.glb)"
-      scale="3 3 3" position="0 0 0"
-      rotation="-90 0 0">
-      </a-entity>
-    
-    <a-text id="textVisservrouw" 
-      value="" position="1 0 0" 
-      rotation="-90 0 0"
-      align="center"
-      color="white"
-      visible="false"
-      width="6"
-      side="double"
-      scale="0.5 0.5 0.5">
-      </a-text>
+  <!-- Marker VISSERVROUW -->
+  <a-marker id="markerVISSERVROUW" type="pattern" url="Testmarker1.patt">
+    <a-entity gltf-model="url(Visservrouw.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
+    <a-text id="textVISSERVROUW" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2" wrap-count="70"></a-text>
   </a-marker>
 
-  <!-- Marker Jongetje-->
-  <a-marker id="markerJongetje" type="pattern" url="Testmarker2.patt">
-    <a-entity gltf-model="url(jongetje.glb)"
-      scale="2 2 2"
-      position="0 0 0"
-      rotation="-90 0 0">
-      </a-entity>
-    
-    <a-text id="textJongetje"
-      value=""
-      position="3 0  0"
-      rotation="-90 0 0"
-      align="center"
-      color="white"
-      visible="false"
-      width="6"
-      side="double"
-      scale="0.5 0.5 0.5">
-      </a-text>
+  <!-- Marker POPPETJE -->
+  <a-marker id="markerPOPPETJE" type="pattern" url="Testmarker2.patt">
+    <a-entity gltf-model="url(poppetje.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
+    <a-text id="textPOPPETJE" value="" position="5 0 0" rotation="-90 0 0" color="White" visible="false" scale="2 2 2"></a-text>
   </a-marker>
 
   <!-- Marker POLITIE -->
   <a-marker id="markerPOLITIE" type="pattern" url="Testmarker3.patt">
-    <a-entity gltf-model="url(Politie.glb)" scale="8 8 8" position="0 0 0" rotation="-90 0 0"></a-entity>
-    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" align="center" color="white" visible="false" width="6" side="double" scale="2 2 2"></a-text>
+    <a-entity gltf-model="url(Politie.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
+    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" color="White" visible="false" scale="2 2 2"></a-text>
   </a-marker>
 
   <!-- Marker SCHAATSER -->
   <a-marker id="markerSCHAATSER" type="pattern" url="Testmarker4.patt">
-    <a-entity gltf-model="url(Schaatser.glb)" scale="8 8 8" position="0 0 0" rotation="-90 0 0"></a-entity>
-    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" align="center" color="white" visible="false" width="6" side="double" scale="2 2 2"></a-text>
+    <a-entity gltf-model="url(Schaatser.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
+    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" color="White" visible="false" scale="2 2 2"></a-text>
   </a-marker>
 
   <a-entity camera></a-entity>
 </a-scene>
 
-<!-- Audio alleen voor visservrouw -->
 <audio id="audioNL" src="NL.mp3"></audio>
 <audio id="audioDE" src="DE.mp3"></audio>
 <audio id="audioEN" src="ENG.mp3"></audio>
 
 <script>
-  const startscreen = document.getElementById('startscreen');
-  const buttons = document.querySelectorAll('.langBtn');
-  let selectedLang = "NL";
+function mute_audio() {
+  const audios = [audioNL, audioDE, audioEN];
+  const muted = audios[0].muted;
+  audios.forEach(a => a.muted = !muted);
+  mutebutton.textContent = muted ? "Geluid is momenteel uit" : "Geluid is momenteel aan";
+}
 
-  const greetings = {
-  Visservrouw: {
-    NL: "De visservrouw met de lange broek in Moddergat is een intrigerend figuur uit de Friese visserijcultuur...",
-    EN: "Hi, I'm a Frisian fisherwoman. We were the first women to wear long trousers...",
-    DE: "Hallo, ich bin eine friesische Fischerin. Wir waren die ersten Frauen, die lange Hosen trugen..."
+let selectedLang = "NL";
+document.querySelectorAll('.langBtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    selectedLang = btn.dataset.lang;
+    document.getElementById('startscreen').style.display = 'none';
+  });
+});
+
+const greetings = {
+  VISSERVROUW: {
+    NL: "De visservrouw met de lange broek uit Moddergat is een fascinerende figuur uit de Friese visserijcultuur. In traditionele vissersgemeenschappen droegen vrouwen vaak lange rokken, maar deze vrouw viel op omdat ze een broek droeg — iets wat destijds ongebruikelijk was. Dit kledingstuk stond symbool voor haar praktische instelling en sterke karakter. De vrouwen in Moddergat, dat aan de Waddenzee ligt, verrichtten zwaar werk zoals het herstellen van netten en dragen van goederen. De visservrouw met de lange broek symboliseert de kracht en het doorzettingsvermogen van de vrouwen die het dorp en hun gezinnen draaiende hielden.",
+    EN: "The fisherwoman with the long trousers in Moddergat is a fascinating figure from Frisian fishing culture. In traditional fishing communities, women often wore long skirts, but this woman stood out because she wore trousers — something unusual for women at the time. This choice reflected her practicality and strong character. The women of Moddergat, a village by the Wadden Sea, did heavy work like repairing nets and carrying goods. The fisherwoman with the long trousers symbolizes the strength and perseverance of the women who kept their village and families running despite hardship.",
+    DE: "Die Fischerin mit der langen Hose in Moddergat ist eine faszinierende Figur aus der friesischen Fischereikultur. In traditionellen Fischerdörfern trugen Frauen meist lange Röcke, aber diese Frau fiel auf, weil sie Hosen trug – etwas, das für Frauen damals ungewöhnlich war. Diese Kleidung stand für ihre praktische Haltung und ihren starken Charakter. Die Frauen von Moddergat, einem Dorf an der Nordsee, verrichteten schwere Arbeit wie das Reparieren von Netzen und das Tragen von Lasten. Die Fischerin mit der langen Hose symbolisiert die Stärke und Ausdauer der Frauen, die ihr Dorf und ihre Familien trotz der harten Bedingungen am Leben hielten."
   },
-
-  Jongetje: {
-    NL: "Hoi, welkom in mijn woonkamer. Hier eten wij altijd...",
-    EN: "Hi, welcome to my living room! This is where we always eat...",
-    DE: "Hallo, willkommen in meinem Wohnzimmer! Hier essen wir immer..."
+  POPPETJE: {
+    NL:"Hoi, ik ben een poppetje",
+    EN:"Hi, I am a little figure",
+    DE:"Hallo, ich bin eine kleine Figur"
   },
-
-  POLITIE: {
-    NL: "Hoi, ik ben een politieagent.",
-    EN: "Hi, I am a police officer.",
-    DE: "Hallo, ich bin ein Polizist."
-  },
-
-  SCHAATSER: {
-    NL: "Hoi, ik ben een schaatser.",
-    EN: "Hi, I am a skater.",
-    DE: "Hallo, ich bin ein Schlittschuhläufer."
-  }
+  POLITIE: { NL:"Hoi, ik ben een politieagent", EN:"Hi, I am a police officer", DE:"Hallo, ich bin ein Polizist" },
+  SCHAATSER: { NL:"Hoi, ik ben een schaatser", EN:"Hi, I am a skater", DE:"Hallo, ich bin ein Schlittschuhläufer" }
 };
 
-  // Startscreen taal selectie
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedLang = btn.getAttribute('data-lang');
-      startscreen.style.display = 'none';
-      console.log("Taal gekozen:", selectedLang);
-    });
+const markers = [
+  {id:"markerVISSERVROUW", textId:"textVISSERVROUW", audio:true},
+  {id:"markerPOPPETJE", textId:"textPOPPETJE"},
+  {id:"markerPOLITIE", textId:"textPOLITIE"},
+  {id:"markerSCHAATSER", textId:"textSCHAATSER"}
+];
+
+markers.forEach(m => {
+  const marker = document.getElementById(m.id);
+  const text = document.getElementById(m.textId);
+  marker.addEventListener('markerFound', () => {
+    text.setAttribute('value', greetings[m.id.replace("marker","")][selectedLang]);
+    text.setAttribute('visible', true);
+    if (m.audio) document.getElementById("audio"+selectedLang).play();
   });
-
-  // Marker logica
-  const markers = [
-    {id:"markerVisservrouw", textId:"textVisservrouw", audio:true},
-    {id:"markerJongetje", textId:"textJongetje", audio:false},
-    {id:"markerPOLITIE", textId:"textPOLITIE", audio:false},
-    {id:"markerSCHAATSER", textId:"textSCHAATSER", audio:false}
-  ];
-
-  markers.forEach(marker => {
-    const markerEl = document.getElementById(marker.id);
-    const textEl = document.getElementById(marker.textId);
-
-    markerEl.addEventListener('markerFound', () => {
-      const key = marker.id.replace("marker","");
-      textEl.setAttribute('value', greetings[key][selectedLang]);
-      textEl.setAttribute('visible', true);
-
-      if(marker.audio) {
-        const audioEl = document.getElementById("audio"+selectedLang);
-        if(audioEl) {
-          audioEl.currentTime = 0;
-          audioEl.play();
-        }
-      }
-    });
-
-    markerEl.addEventListener('markerLost', () => {
-      textEl.setAttribute('visible', false);
-    });
-  });
+  marker.addEventListener('markerLost', () => text.setAttribute('visible', false));
+});
 </script>
-
 </body>
 </html>
