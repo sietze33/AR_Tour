@@ -53,7 +53,9 @@
       align="center"
       color="white"
       visible="false"
-      scale="0,5 0,5 0,5">
+      width="6"
+      side="double"
+      scale="0.5 0.5 0.5">
       </a-text>
   </a-marker>
 
@@ -70,22 +72,24 @@
       position="3 0  0"
       rotation="-90 0 0"
       align="center"
-      color="White"
+      color="white"
       visible="false"
-      scale="0,5 0,5 0,5">
+      width="6"
+      side="double"
+      scale="0.5 0.5 0.5">
       </a-text>
   </a-marker>
 
   <!-- Marker POLITIE -->
   <a-marker id="markerPOLITIE" type="pattern" url="Testmarker3.patt">
     <a-entity gltf-model="url(Politie.glb)" scale="8 8 8" position="0 0 0" rotation="-90 0 0"></a-entity>
-    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" align="center" color="White" visible="false" scale="2 2 2"></a-text>
-  </a-marker>  -->
+    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" align="center" color="white" visible="false" width="6" side="double" scale="2 2 2"></a-text>
+  </a-marker>
 
   <!-- Marker SCHAATSER -->
   <a-marker id="markerSCHAATSER" type="pattern" url="Testmarker4.patt">
     <a-entity gltf-model="url(Schaatser.glb)" scale="8 8 8" position="0 0 0" rotation="-90 0 0"></a-entity>
-    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" align="center" color="White" visible="false" scale="2 2 2"></a-text>
+    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" align="center" color="white" visible="false" width="6" side="double" scale="2 2 2"></a-text>
   </a-marker>
 
   <a-entity camera></a-entity>
@@ -103,15 +107,15 @@
 
   const greetings = {
   Visservrouw: {
-    NL: "De visservrouw met de lange broek in Moddergat is een intrigerend figuur uit de Friese visserijcultuur, vooral uit het dorp Moddergat, dat bekendstaat om zijn rijke vissersgeschiedenis.\n\nIn traditionele vissersgemeenschappen droegen vrouwen doorgaans lange rokken, maar deze visservrouw viel op omdat zij een broek droeg – iets wat destijds ongebruikelijk was voor vrouwen. Deze kledingkeuze maakte haar anders dan de andere vrouwen in het dorp en symboliseerde vaak praktische noodzaak of een sterke persoonlijkheid.\n\nModdergat, gelegen aan de Waddenzee, kende barre leefomstandigheden: vrouwen moesten vaak zwaar werk verrichten, zoals het herstellen van netten of het sjouwen van goederen, en een lange broek was daarbij veel praktischer dan een rok.\n\nZij staat dan ook symbool voor de kracht en het doorzettingsvermogen van de visservrouwen, die – ondanks de moeilijke omstandigheden en het frequente gemis van hun mannen die op zee waren – het dorp en hun gezinnen draaiende hielden.",
-    EN: "Hi, I'm a Frisian fisherwoman. We were the first women to wear long trousers.\nOur job was to search for fish on the mudflats and then tie them to a large rope with hooks.",
-    DE: "Hallo, ich bin eine friesische Fischerin. Wir waren die ersten Frauen, die lange Hosen trugen.\nUnsere Aufgabe war es, im Watt nach Fischen zu suchen und sie dann mit Haken an ein großes Seil zu binden."
+    NL: "De visservrouw met de lange broek in Moddergat is een intrigerend figuur uit de Friese visserijcultuur...",
+    EN: "Hi, I'm a Frisian fisherwoman. We were the first women to wear long trousers...",
+    DE: "Hallo, ich bin eine friesische Fischerin. Wir waren die ersten Frauen, die lange Hosen trugen..."
   },
 
   Jongetje: {
-    NL: "Hoi, welkom in mijn woonkamer. Hier eten wij altijd.\nBij ons thuis is het zo dat de inwoners die een inkomen hebben een stoel verdienen aan de tafel.\nIk en mijn zusje moeten dan tijdens het eten op de grond gaan zitten.",
-    EN: "Hi, welcome to my living room! This is where we always eat.\nIn our house, residents who have an income earn a seat at the table.\nMy sister and I have to sit on the floor while we eat.",
-    DE: "Hallo, willkommen in meinem Wohnzimmer! Hier essen wir immer.\nBei uns bekommen die Bewohner, die ein Einkommen haben, einen Platz am Tisch.\nMeine Schwester und ich müssen beim Essen auf dem Boden sitzen."
+    NL: "Hoi, welkom in mijn woonkamer. Hier eten wij altijd...",
+    EN: "Hi, welcome to my living room! This is where we always eat...",
+    DE: "Hallo, willkommen in meinem Wohnzimmer! Hier essen wir immer..."
   },
 
   POLITIE: {
@@ -126,7 +130,6 @@
     DE: "Hallo, ich bin ein Schlittschuhläufer."
   }
 };
-
 
   // Startscreen taal selectie
   buttons.forEach(btn => {
@@ -150,12 +153,16 @@
     const textEl = document.getElementById(marker.textId);
 
     markerEl.addEventListener('markerFound', () => {
-      textEl.setAttribute('value', greetings[marker.id.replace("marker","")][selectedLang]);
+      const key = marker.id.replace("marker","");
+      textEl.setAttribute('value', greetings[key][selectedLang]);
       textEl.setAttribute('visible', true);
 
       if(marker.audio) {
         const audioEl = document.getElementById("audio"+selectedLang);
-        if(audioEl && audioEl.paused) audioEl.play();
+        if(audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play();
+        }
       }
     });
 
@@ -167,25 +174,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
