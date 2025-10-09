@@ -58,18 +58,42 @@
     .langBtn:hover img { transform: scale(1.1) rotate(5deg); }
 
     /* Onderaan tekstvak */
-    #bottomText {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 15px;
-      text-align: center;
-      font-size: 1.1em;
-      color: white;
-      background-color: rgba(0,0,0,0.6);
-      display: none;
-      z-index: 20;
+  #bottomText {
+  position: fixed;
+  bottom: 40px; /* iets hoger dan onderkant */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-height: 150px; /* hoogte beperken */
+  overflow-y: auto; /* verticaal scrollen */
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 1.1em;
+  color: black; /* tekst zwart */
+  background-color: rgba(255, 255, 255, 0.95); /* witte achtergrond */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 20;
+  scrollbar-width: thin; /* mooie kleine scrollbar (Firefox) */
+  scrollbar-color: #888 #f0f0f0;
+}
+
+/* Scrollbar voor Chrome, Edge, Safari */
+#bottomText::-webkit-scrollbar {
+  width: 8px;
+}
+
+#bottomText::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+#bottomText::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
     }
   </style>
 </head>
@@ -166,3 +190,4 @@ markers.forEach(m => {
 </script>
 </body>
 </html>
+
