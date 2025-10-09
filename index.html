@@ -136,19 +136,7 @@
 <audio id="audioEN" src="ENG.mp3"></audio>
 
 <script>
-   const marker = document.querySelector('markerVISSERVROUW'); // jouw marker
-  const bottomText = document.getElementById('bottomText');
-
-  // Als de marker wordt gezien:
-  marker.addEventListener('markerFound', () => {
-    bottomText.style.display = 'block';
-    bottomText.textContent = 'Je hebt de marker gescand! 🎯';
-  });
-
-  // Als de marker weer uit beeld gaat:
-  marker.addEventListener('markerLost', () => {
-    bottomText.style.display = 'none';
-  });
+  
 
 
 function mute_audio() {
@@ -200,9 +188,24 @@ markers.forEach(m => {
     if (bg) bg.setAttribute('visible', false);
   });
 });
+
+   const marker = document.querySelector('markerVISSERVROUW'); // jouw marker
+  const bottomText = document.getElementById('bottomText');
+
+  // Als de marker wordt gezien:
+  marker.addEventListener('markerFound', () => {
+    bottomText.style.display = 'block';
+    bottomText.textContent = 'Je hebt de marker gescand! 🎯';
+  });
+
+  // Als de marker weer uit beeld gaat:
+  marker.addEventListener('markerLost', () => {
+    bottomText.style.display = 'none';
+  });
 </script>
 </body>
 </html>
+
 
 
 
