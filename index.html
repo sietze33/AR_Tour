@@ -91,24 +91,17 @@
   <!-- Marker POPPETJE -->
   <a-marker id="markerPOPPETJE" type="pattern" url="Testmarker2.patt">
     <a-entity gltf-model="url(jongentje.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
-    <a-plane id="bgPOPPETJE" position="5 0 -0.01" rotation="-90 0 0" width="4" height="1.2" color="black" opacity="0.6" visible="false"></a-plane>
+    <a-plane id="bgPOPPETJE"
+      position="5 0 -0.01"
+      rotation="-90 0 0" 
+      width="4" 
+      height="1.2" 
+      color="black" 
+      opacity="0.6" 
+      visible="false">
+      </a-plane>
     <a-text id="textPOPPETJE" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2"></a-text>
   </a-marker>
-
-  <!-- Marker POLITIE -->
-  <a-marker id="markerPOLITIE" type="pattern" url="Testmarker3.patt">
-    <a-entity gltf-model="url(Politie.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
-    <a-plane id="bgPOLITIE" position="5 0 -0.01" rotation="-90 0 0" width="4" height="1.2" color="black" opacity="0.6" visible="false"></a-plane>
-    <a-text id="textPOLITIE" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2"></a-text>
-  </a-marker>
-
-  <!-- Marker SCHAATSER -->
-  <a-marker id="markerSCHAATSER" type="pattern" url="Testmarker4.patt">
-    <a-entity gltf-model="url(Schaatser.glb)" scale="8 8 8" rotation="-90 0 0"></a-entity>
-    <a-plane id="bgSCHAATSER" position="5 0 -0.01" rotation="-90 0 0" width="4" height="1.2" color="black" opacity="0.6" visible="false"></a-plane>
-    <a-text id="textSCHAATSER" value="" position="5 0 0" rotation="-90 0 0" color="white" visible="false" scale="2 2 2"></a-text>
-  </a-marker>
-
   <a-entity camera></a-entity>
 </a-scene>
 
@@ -139,27 +132,15 @@ const greetings = {
     DE: "Die Fischerin mit der langen Hose in Moddergat ist eine faszinierende Figur aus der friesischen Fischereikultur. In traditionellen Fischerdörfern trugen Frauen meist lange Röcke, aber diese Frau fiel auf, weil sie Hosen trug – etwas, das für Frauen damals ungewöhnlich war. Diese Kleidung stand für ihre praktische Haltung und ihren starken Charakter. Die Frauen von Moddergat, einem Dorf an der Nordsee, verrichteten schwere Arbeit wie das Reparieren von Netzen und das Tragen von Lasten. Die Fischerin mit der langen Hose symbolisiert die Stärke und Ausdauer der Frauen, die ihr Dorf und ihre Familien trotz der harten Bedingungen am Leben hielten."
   },
   POPPETJE: {
-    NL:"Hoi, ik ben een poppetje",
-    EN:"Hi, I am a little figure",
-    DE:"Hallo, ich bin eine kleine Figur"
-  },
-  POLITIE: {
-    NL:"Hoi, ik ben een politieagent",
-    EN:"Hi, I am a police officer",
-    DE:"Hallo, ich bin ein Polizist"
-  },
-  SCHAATSER: {
-    NL:"Hoi, ik ben een schaatser",
-    EN:"Hi, I am a skater",
-    DE:"Hallo, ich bin ein Schlittschuhläufer"
-  }
+    NL:"Hallo, Welkom in mijn woonkamer tijdens het eten zat ik op de grond bij ons thuis was het zo dat de bewoners met een inkomen een stoel voor de tafel kregen en hieraan zitten en de rest mocht niet aan tafel omdat wij dus geen inkomsten brachten",
+    EN:"Hello, Welcome to my living room while eating I sat on the floor in our home the residents with an income were given a chair in front of the table and sat at it and the rest were not allowed to sit at the table because we did not bring in any income",
+    DE:"Hallo, willkommen in meinem Wohnzimmer. Beim Essen saß ich auf dem Boden in unserem Haus. Die Bewohner mit einem Einkommen bekamen einen Stuhl vor dem Tisch und setzten sich dorthin. Der Rest durfte nicht am Tisch sitzen, weil wir kein Einkommen hatten."
+  } 
 };
 
 const markers = [
   {id:"markerVISSERVROUW", textId:"textVISSERVROUW", audio:true},
-  {id:"markerPOPPETJE", textId:"textPOPPETJE"},
-  {id:"markerPOLITIE", textId:"textPOLITIE"},
-  {id:"markerSCHAATSER", textId:"textSCHAATSER"}
+  {id:"markerPOPPETJE", textId:"textPOPPETJE"}
 ];
 
 markers.forEach(m => {
@@ -181,6 +162,7 @@ markers.forEach(m => {
 </script>
 </body>
 </html>
+
 
 
 
