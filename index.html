@@ -45,6 +45,20 @@
     .langBtn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
     .langBtn img { width:60px; height:60px; border-radius:50%; transition: transform 0.3s ease; }
     .langBtn:hover img { transform: scale(1.1) rotate(5deg); }
+    
+     #bottomText {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    display: none; 
+  }
   </style>
 </head>
 <body>
@@ -61,6 +75,8 @@
   <button class="langBtn" data-lang="DE"><img src="Schermafbeelding 2025-09-24 100315.png"><span>Deutsch</span></button>
   <button onclick="mute_audio()" type="button" id="mutebutton">Mute</button>
 </div>
+
+  <div> id = "Bottomtext">marker is gevonden! </div>
 
 <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true;">
 <!-- Marker VISSERVROUW -->
@@ -120,6 +136,21 @@
 <audio id="audioEN" src="ENG.mp3"></audio>
 
 <script>
+   const marker = document.querySelector('markerVISSERVROUW'); // jouw marker
+  const bottomText = document.getElementById('bottomText');
+
+  // Als de marker wordt gezien:
+  marker.addEventListener('markerFound', () => {
+    bottomText.style.display = 'block';
+    bottomText.textContent = 'Je hebt de marker gescand! 🎯';
+  });
+
+  // Als de marker weer uit beeld gaat:
+  marker.addEventListener('markerLost', () => {
+    bottomText.style.display = 'none';
+  });
+
+
 function mute_audio() {
   const audios = [audioNL, audioDE, audioEN];
   const muted = audios[0].muted;
@@ -172,6 +203,7 @@ markers.forEach(m => {
 </script>
 </body>
 </html>
+
 
 
 
